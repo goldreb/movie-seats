@@ -15,6 +15,11 @@ body {
   font-family: "Roboto Condense", sans-serif;
 }
 
+h1{
+  font-family:"Roboto Condense", sans-serif;
+ 
+}
+
 .movie-container {
   margin: 20px 0;
 }
@@ -29,6 +34,11 @@ body {
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
+}
+
+.movie-container  option{
+  background-color: rgba(4, 39, 75, 0.8);
+  color: white;
 }
 
 /*  the perspective will create a tilted box.  */

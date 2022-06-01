@@ -8,9 +8,31 @@ const movieSelect = document.getElementById("movie");
 // the plus+ sign will turn the string into a whole number, another ways to do a string into number is parseInt
 let ticketPrice = +movieSelect.value;
 
+// Save selected movie index and price
+
+function setMovieData(movieIndex, moviePrice) {
+  localStorage.setItem("selectedMovieIndex", movieIndex);
+  localStorage.setItem("selecteMoviePrice", moviePrice);
+}
+
 // update total and count
 function updateSelectedCount() {
   const selectedSeats = document.querySelectorAll(".row .seat.selected");
+
+  // Copy selected seats into array
+  // Map through array
+
+  // return a new arrau indexes
+
+  // use spread operater [... ]
+  // with implicit return
+  const seatsIndex = [...selectedSeats].map((seat) => [...seats].indexOf(seat));
+
+  // use localStorage to store. localStorage is built in.
+  // seatsIndex is an array, need to make it string so use JSON.stringify
+
+  localStorage.setItem("selectedSeats", JSON.stringify(seatsIndex));
+
   //   console.log(selectedSeats);
   const selectedSeatsCount = selectedSeats.length;
   //   console.log(selectedSeatsCount);
@@ -25,6 +47,9 @@ function updateSelectedCount() {
 // Movie select event
 movieSelect.addEventListener("change", (e) => {
   ticketPrice = +e.target.value;
+
+  setMovieData(e.target.selectedIndex, e.target.value);
+
   updateSelectedCount();
 });
 

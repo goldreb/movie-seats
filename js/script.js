@@ -5,6 +5,8 @@ const count = document.getElementById("count");
 const total = document.getElementById("total");
 const movieSelect = document.getElementById("movie");
 
+populateUI();
+
 // the plus+ sign will turn the string into a whole number, another ways to do a string into number is parseInt
 let ticketPrice = +movieSelect.value;
 
@@ -44,6 +46,29 @@ function updateSelectedCount() {
 
 // console.log(typeof ticketPrice);
 
+// Get data from localStorage and populate UI
+
+function populateUI() {
+  // pull out selected seats from storage
+  const selectedSeats = JSON.parse(localStorage.getItem("selectedSeats"));
+
+  // check to see something is in the selectedSeats
+  if (selectedSeats !== null && selectedSeats.length > 0) {
+    seats.forEach((seat, index) => {
+      // check to see if it is in the index and if it is not there then use -1
+      if (selectedSeats.indexOf(index) > -1) {
+        seat.classList.add("selected");
+      }
+    });
+  }
+
+  const selectedMovieIndex = localStorage.getItem("selectedMovieIndex");
+  if (selectedMovieIndex !== null) {
+    movieSelect.selectedIndex = selectedMovieIndex;
+  }
+  // console.log(selectedSeats);
+}
+
 // Movie select event
 movieSelect.addEventListener("change", (e) => {
   ticketPrice = +e.target.value;
@@ -66,3 +91,7 @@ container.addEventListener("click", (e) => {
     updateSelectedCount();
   }
 });
+
+// initial count and total set
+
+updateSelectedCount();
